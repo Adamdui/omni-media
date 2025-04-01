@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Solutions | Transform Your Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#2E5BFF',secondary:'#B026FF'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@font-face {
+font-family: 'Futura PT';
+src: url('https://fonts.cdnfonts.com/css/futura-pt') format('woff2');
+font-weight: normal;
+font-style: normal;
+}
+@font-face {
+font-family: 'Druk Text Wide';
+src: url('https://fonts.cdnfonts.com/css/druk-text-wide') format('woff2');
+font-weight: bold;
+font-style: normal;
+}
+body {
+font-family: 'Helvetica Neue', sans-serif;
+background: linear-gradient(135deg, #0A0A1F 0%, #121212 100%);
+color: #ffffff;
+}
+.futura {
+font-family: 'Futura PT', sans-serif;
+}
+.druk {
+font-family: 'Druk Text Wide', sans-serif;
+font-weight: bold;
+}
+.hero-title {
+font-size: clamp(3rem, 8vw, 6rem);
+line-height: 1.1;
+}
+.hero-subtitle {
+font-size: clamp(1.5rem, 4vw, 4rem);
+line-height: 1.2;
+}
+.glass {
+background: rgba(18, 18, 24, 0.7);
+backdrop-filter: blur(8px);
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.neon-border {
+box-shadow: 0 0 10px rgba(46, 91, 255, 0.5), 0 0 20px rgba(46, 91, 255, 0.3);
+}
+.neon-text {
+text-shadow: 0 0 5px rgba(46, 91, 255, 0.7), 0 0 10px rgba(46, 91, 255, 0.5);
+}
+.card-hover {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+transform: translateY(-5px) scale(1.02);
+box-shadow: 0 10px 25px rgba(46, 91, 255, 0.2);
+}
+.custom-input {
+background: rgba(18, 18, 24, 0.6);
+border: 1px solid rgba(255, 255, 255, 0.1);
+transition: all 0.3s ease;
+}
+.custom-input:focus {
+border-color: #2E5BFF;
+box-shadow: 0 0 0 2px rgba(46, 91, 255, 0.2);
+transform: translateY(-2px);
+}
+#particles-container {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 0;
+overflow: hidden;
+}
+.particle {
+position: absolute;
+background: #2E5BFF;
+border-radius: 50%;
+opacity: 0.5;
+}
+.cursor-trail {
+position: fixed;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background: #B026FF;
+pointer-events: none;
+z-index: 9999;
+mix-blend-mode: screen;
+opacity: 0;
+transition: opacity 0.2s ease, transform 0.3s ease;
+}
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: -4px;
+left: 0;
+width: 0;
+height: 2px;
+background: #2E5BFF;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.custom-checkbox {
+appearance: none;
+width: 20px;
+height: 20px;
+border: 1px solid rgba(255, 255, 255, 0.3);
+border-radius: 4px;
+background: rgba(18, 18, 24, 0.6);
+cursor: pointer;
+position: relative;
+}
+.custom-checkbox:checked {
+background: #2E5BFF;
+border-color: #2E5BFF;
+}
+.custom-checkbox:checked::after {
+content: '✓';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: white;
+font-size: 12px;
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 50px;
+height: 26px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(18, 18, 24, 0.6);
+transition: .4s;
+border-radius: 34px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #2E5BFF;
+}
+input:checked + .slider:before {
+transform: translateX(24px);
+}
+.portfolio-item {
+overflow: hidden;
+position: relative;
+}
+.portfolio-item img {
+transition: transform 0.5s ease;
+}
+.portfolio-item:hover img {
+transform: scale(1.05);
+}
+.portfolio-overlay {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+padding: 2rem 1.5rem;
+transform: translateY(20px);
+opacity: 0;
+transition: all 0.3s ease;
+}
+.portfolio-item:hover .portfolio-overlay {
+transform: translateY(0);
+opacity: 1;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+</head>
+<body class="min-h-screen text-white">
+<!-- Cursor Trail -->
+<div class="cursor-trail"></div>
+<!-- Navigation -->
+<nav class="glass fixed top-0 w-full z-50 px-6 py-4">
+<div class="container mx-auto flex justify-between items-center">
+<a href="#" class="text-3xl font-['Pacifico'] text-white">logo</a>
+<div class="hidden md:flex space-x-8">
+<a href="#home" class="nav-link druk text-sm tracking-wider">HOME</a>
+<a href="#services" class="nav-link druk text-sm tracking-wider">SERVICES</a>
+<a href="#portfolio" class="nav-link druk text-sm tracking-wider">PORTFOLIO</a>
+<a href="#contact" class="nav-link druk text-sm tracking-wider">CONTACT</a>
+</div>
+<button class="md:hidden w-10 h-10 flex items-center justify-center">
+<i class="ri-menu-line text-xl"></i>
+</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section id="home" class="relative min-h-screen flex items-center overflow-hidden" style="background-image: url('https://public.readdy.ai/ai/img_res/89a66f2957dd45eef0c42b8f56e7cc23.jpg'); background-size: cover; background-position: center;">
+<div id="particles-container"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-[#0A0A1F]/80 to-transparent"></div>
+<div class="container mx-auto px-6 py-20 relative z-10">
+<div class="max-w-3xl">
+<h1 class="hero-title futura mb-4 text-white">
+Transform Your Business
+</h1>
+<h2 class="hero-subtitle druk mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+with Stunning Digital Solutions
+</h2>
+<p class="text-lg mb-10 text-gray-300 max-w-xl">
+We specialize in high-quality website design, photography, and videos that elevate your brand's presence. Whether you're a small business or a local entrepreneur, we help you create a strong, lasting impression online.
+</p>
+<button class="druk px-8 py-4 bg-black border border-primary !rounded-button text-white text-sm tracking-wider hover:bg-primary/10 transition-all duration-300 neon-border relative overflow-hidden group">
+<span class="relative z-10">LET'S CREATE SOMETHING AMAZING</span>
+<span class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+</button>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section id="services" class="py-20 relative">
+<div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyRTVCRkYiIGZpbGwtb3BhY2l0eT0iMC40Ij48cGF0aCBkPSJNMzYgMzRoLTJ2LTRoMnY0em0wLTZ2LTRoLTJ2NGgyek0yNCAyNGg0djJoLTR2LTJ6bTYgMGg0djJoLTR2LTJ6bTYgMGg0djJoLTR2LTJ6Ii8+PC9nPjwvZz48L3N2Zz4='); background-repeat: repeat;"></div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="text-center mb-16">
+<h2 class="futura text-5xl mb-4">Your One-Stop Solution</h2>
+<h3 class="druk text-2xl mb-8 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">for Digital Success</h3>
+<div class="w-24 h-1 bg-primary mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="glass p-8 !rounded-lg card-hover border border-white/10">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 !rounded-full mb-6">
+<i class="ri-code-line text-2xl text-primary"></i>
+</div>
+<h3 class="druk text-xl mb-4">Website Design</h3>
+<p class="text-gray-300 mb-6">Tailored, responsive websites that reflect your brand identity and engage your audience. Built with cutting-edge technology for optimal performance.</p>
+<button class="druk px-6 py-3 bg-black border border-primary !rounded-button text-white text-xs tracking-wider hover:bg-primary/10 transition-all duration-300 whitespace-nowrap">
+BUILD YOUR WEBSITE
+</button>
+</div>
+<div class="glass p-8 !rounded-lg card-hover border border-white/10">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 !rounded-full mb-6">
+<i class="ri-camera-line text-2xl text-primary"></i>
+</div>
+<h3 class="druk text-xl mb-4">Photography</h3>
+<p class="text-gray-300 mb-6">High-quality professional photography that captures your business essence. From product shots to corporate portraits, we deliver stunning visuals.</p>
+<button class="druk px-6 py-3 bg-black border border-primary !rounded-button text-white text-xs tracking-wider hover:bg-primary/10 transition-all duration-300 whitespace-nowrap">
+BOOK A PHOTOSHOOT
+</button>
+</div>
+<div class="glass p-8 !rounded-lg card-hover border border-white/10">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 !rounded-full mb-6">
+<i class="ri-movie-line text-2xl text-primary"></i>
+</div>
+<h3 class="druk text-xl mb-4">Video Production</h3>
+<p class="text-gray-300 mb-6">Engaging promotional videos that tell your brand's story. From concept to final edit, we create compelling visual narratives that resonate with viewers.</p>
+<button class="druk px-6 py-3 bg-black border border-primary !rounded-button text-white text-xs tracking-wider hover:bg-primary/10 transition-all duration-300 whitespace-nowrap">
+GET STARTED ON YOUR VIDEO
+</button>
+</div>
+<div class="glass p-8 !rounded-lg card-hover border border-white/10">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 !rounded-full mb-6">
+<i class="ri-palette-line text-2xl text-primary"></i>
+</div>
+<h3 class="druk text-xl mb-4">Branding</h3>
+<p class="text-gray-300 mb-6">A strong brand identity that connects with your audience. We develop comprehensive branding solutions that make your business stand out in a crowded market.</p>
+<button class="druk px-6 py-3 bg-black border border-primary !rounded-button text-white text-xs tracking-wider hover:bg-primary/10 transition-all duration-300 whitespace-nowrap">
+CREATE YOUR BRAND
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="py-16 bg-[#0A0A1F]">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="text-center">
+<div class="text-4xl futura mb-2 text-primary">120+</div>
+<div class="text-sm druk text-gray-400">PROJECTS COMPLETED</div>
+</div>
+<div class="text-center">
+<div class="text-4xl futura mb-2 text-primary">98%</div>
+<div class="text-sm druk text-gray-400">CLIENT SATISFACTION</div>
+</div>
+<div class="text-center">
+<div class="text-4xl futura mb-2 text-primary">5</div>
+<div class="text-sm druk text-gray-400">YEARS EXPERIENCE</div>
+</div>
+<div class="text-center">
+<div class="text-4xl futura mb-2 text-primary">24/7</div>
+<div class="text-sm druk text-gray-400">SUPPORT</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-20">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="futura text-5xl mb-4">Our Work Speaks</h2>
+<h3 class="druk text-2xl mb-8 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">for Itself</h3>
+<p class="max-w-2xl mx-auto text-gray-300">Browse our portfolio to see how we've helped businesses like yours succeed with creative digital solutions.</p>
+</div>
+<div class="flex mb-8 justify-center">
+<div class="inline-flex bg-black/30 p-1 !rounded-full">
+<button class="px-6 py-2 !rounded-full bg-primary text-white druk text-xs">ALL</button>
+<button class="px-6 py-2 !rounded-full text-white druk text-xs hover:bg-white/10 transition-all">WEBSITES</button>
+<button class="px-6 py-2 !rounded-full text-white druk text-xs hover:bg-white/10 transition-all">PHOTOGRAPHY</button>
+<button class="px-6 py-2 !rounded-full text-white druk text-xs hover:bg-white/10 transition-all">VIDEOS</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="portfolio-item !rounded-lg overflow-hidden group">
+<img src="https://public.readdy.ai/ai/img_res/e985725e578634651c7c30dc50ee2e21.jpg" alt="Website Design Project" class="w-full h-64 object-cover object-top transition-transform duration-700 group-hover:scale-110">
+<div class="portfolio-overlay">
+<h3 class="druk text-lg mb-1">Luxury Brand Website</h3>
+<p class="text-sm text-gray-300">Website Design</p>
+<div class="mt-3 opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+<button class="text-xs border border-white/30 px-3 py-1 !rounded-button hover:bg-white/10 transition-all whitespace-nowrap">VIEW PROJECT</button>
+</div>
+</div>
+</div>
+<div class="portfolio-item !rounded-lg overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/51646351affc406f63e449396b8ac7ac.jpg" alt="Product Photography" class="w-full h-64 object-cover object-top">
+<div class="portfolio-overlay">
+<h3 class="druk text-lg mb-1">Luxury Watch Campaign</h3>
+<p class="text-sm text-gray-300">Photography</p>
+<div class="mt-3 opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+<button class="text-xs border border-white/30 px-3 py-1 !rounded-button hover:bg-white/10 transition-all whitespace-nowrap">VIEW PROJECT</button>
+</div>
+</div>
+</div>
+<div class="portfolio-item !rounded-lg overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/de2ed2e4009162ceeeee46ff8149507f.jpg" alt="Video Production" class="w-full h-64 object-cover object-top">
+<div class="portfolio-overlay">
+<h3 class="druk text-lg mb-1">Corporate Promo Video</h3>
+<p class="text-sm text-gray-300">Video Production</p>
+<div class="mt-3 opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+<button class="text-xs border border-white/30 px-3 py-1 !rounded-button hover:bg-white/10 transition-all whitespace-nowrap">VIEW PROJECT</button>
+</div>
+</div>
+</div>
+<div class="portfolio-item !rounded-lg overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/f7ff95c9c4f3b13d25e78d01f12c2eb2.jpg" alt="Branding Project" class="w-full h-64 object-cover object-top">
+<div class="portfolio-overlay">
+<h3 class="druk text-lg mb-1">Elite Fitness Brand</h3>
+<p class="text-sm text-gray-300">Branding</p>
+<div class="mt-3 opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+<button class="text-xs border border-white/30 px-3 py-1 !rounded-button hover:bg-white/10 transition-all whitespace-nowrap">VIEW PROJECT</button>
+</div>
+</div>
+</div>
+<div class="portfolio-item !rounded-lg overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/322556bc927543ce8728a2b55bac9318.jpg" alt="E-commerce Website" class="w-full h-64 object-cover object-top">
+<div class="portfolio-overlay">
+<h3 class="druk text-lg mb-1">Fashion E-commerce</h3>
+<p class="text-sm text-gray-300">Website Design</p>
+<div class="mt-3 opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+<button class="text-xs border border-white/30 px-3 py-1 !rounded-button hover:bg-white/10 transition-all whitespace-nowrap">VIEW PROJECT</button>
+</div>
+</div>
+</div>
+<div class="portfolio-item !rounded-lg overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/c1beb014f749f545f9eb285dda4efb24.jpg" alt="Food Photography" class="w-full h-64 object-cover object-top">
+<div class="portfolio-overlay">
+<h3 class="druk text-lg mb-1">Gourmet Restaurant</h3>
+<p class="text-sm text-gray-300">Photography</p>
+<div class="mt-3 opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+<button class="text-xs border border-white/30 px-3 py-1 !rounded-button hover:bg-white/10 transition-all whitespace-nowrap">VIEW PROJECT</button>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<button class="druk px-8 py-4 bg-black border border-primary !rounded-button text-white text-sm tracking-wider hover:bg-primary/10 transition-all duration-300 neon-border whitespace-nowrap">
+SEE MORE WORK
+</button>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section class="py-20 bg-[#0A0A1F]">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="futura text-5xl mb-4">Our Process</h2>
+<h3 class="druk text-2xl mb-8 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">How We Work</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="text-center">
+<div class="w-20 h-20 flex items-center justify-center bg-primary/10 !rounded-full mx-auto mb-6 relative">
+<i class="ri-chat-3-line text-3xl text-primary"></i>
+<div class="absolute -top-2 -right-2 w-8 h-8 flex items-center justify-center bg-primary !rounded-full druk text-white">1</div>
+</div>
+<h3 class="druk text-xl mb-3">Consultation</h3>
+<p class="text-gray-400">We discuss your goals, vision, and requirements to understand your needs.</p>
+</div>
+<div class="text-center">
+<div class="w-20 h-20 flex items-center justify-center bg-primary/10 !rounded-full mx-auto mb-6 relative">
+<i class="ri-draft-line text-3xl text-primary"></i>
+<div class="absolute -top-2 -right-2 w-8 h-8 flex items-center justify-center bg-primary !rounded-full druk text-white">2</div>
+</div>
+<h3 class="druk text-xl mb-3">Strategy</h3>
+<p class="text-gray-400">We develop a tailored plan to achieve your objectives and maximize results.</p>
+</div>
+<div class="text-center">
+<div class="w-20 h-20 flex items-center justify-center bg-primary/10 !rounded-full mx-auto mb-6 relative">
+<i class="ri-tools-line text-3xl text-primary"></i>
+<div class="absolute -top-2 -right-2 w-8 h-8 flex items-center justify-center bg-primary !rounded-full druk text-white">3</div>
+</div>
+<h3 class="druk text-xl mb-3">Creation</h3>
+<p class="text-gray-400">Our team brings your vision to life with meticulous attention to detail.</p>
+</div>
+<div class="text-center">
+<div class="w-20 h-20 flex items-center justify-center bg-primary/10 !rounded-full mx-auto mb-6 relative">
+<i class="ri-rocket-line text-3xl text-primary"></i>
+<div class="absolute -top-2 -right-2 w-8 h-8 flex items-center justify-center bg-primary !rounded-full druk text-white">4</div>
+</div>
+<h3 class="druk text-xl mb-3">Launch</h3>
+<p class="text-gray-400">We deliver the final product and provide ongoing support as needed.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Performance Chart Section -->
+<section class="py-20">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="futura text-5xl mb-4">Performance Metrics</h2>
+<h3 class="druk text-2xl mb-8 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Results That Matter</h3>
+<p class="max-w-2xl mx-auto text-gray-300">Our digital solutions don't just look good—they perform. See how our work has helped businesses achieve measurable results.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="glass p-6 !rounded-lg">
+<h3 class="druk text-lg mb-4">Website Performance Improvement</h3>
+<div id="websiteChart" class="w-full h-80"></div>
+</div>
+<div class="glass p-6 !rounded-lg">
+<h3 class="druk text-lg mb-4">Client Growth by Industry</h3>
+<div id="growthChart" class="w-full h-80"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive CTA Section -->
+<section class="py-20 relative">
+<div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyRTVCRkYiIGZpbGwtb3BhY2l0eT0iMC40Ij48cGF0aCBkPSJNMzYgMzRoLTJ2LTRoMnY0em0wLTZ2LTRoLTJ2NGgyek0yNCAyNGg0djJoLTR2LTJ6bTYgMGg0djJoLTR2LTJ6bTYgMGg0djJoLTR2LTJ6Ii8+PC9nPjwvZz48L3N2Zz4='); background-repeat: repeat;"></div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="max-w-4xl mx-auto glass p-10 !rounded-xl border border-white/10">
+<div class="text-center mb-10">
+<h2 class="futura text-4xl mb-4">Ready to Transform Your Digital Presence?</h2>
+<p class="text-gray-300">Answer a few quick questions to get a personalized quote for your project.</p>
+</div>
+<div class="space-y-6">
+<div>
+<label class="block druk text-sm mb-2">WHAT TYPE OF PROJECT ARE YOU INTERESTED IN?</label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="relative">
+<input type="radio" id="website" name="project-type" class="absolute opacity-0 w-full h-full cursor-pointer">
+<label for="website" class="block text-center p-4 border border-white/20 !rounded-lg cursor-pointer hover:border-primary transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full mx-auto mb-3">
+<i class="ri-code-line text-xl text-primary"></i>
+</div>
+<span class="druk text-sm">WEBSITE</span>
+</label>
+</div>
+<div class="relative">
+<input type="radio" id="photography" name="project-type" class="absolute opacity-0 w-full h-full cursor-pointer">
+<label for="photography" class="block text-center p-4 border border-white/20 !rounded-lg cursor-pointer hover:border-primary transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full mx-auto mb-3">
+<i class="ri-camera-line text-xl text-primary"></i>
+</div>
+<span class="druk text-sm">PHOTOGRAPHY</span>
+</label>
+</div>
+<div class="relative">
+<input type="radio" id="video" name="project-type" class="absolute opacity-0 w-full h-full cursor-pointer">
+<label for="video" class="block text-center p-4 border border-white/20 !rounded-lg cursor-pointer hover:border-primary transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full mx-auto mb-3">
+<i class="ri-movie-line text-xl text-primary"></i>
+</div>
+<span class="druk text-sm">VIDEO</span>
+</label>
+</div>
+<div class="relative">
+<input type="radio" id="branding" name="project-type" class="absolute opacity-0 w-full h-full cursor-pointer">
+<label for="branding" class="block text-center p-4 border border-white/20 !rounded-lg cursor-pointer hover:border-primary transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full mx-auto mb-3">
+<i class="ri-palette-line text-xl text-primary"></i>
+</div>
+<span class="druk text-sm">BRANDING</span>
+</label>
+</div>
+</div>
+</div>
+<div>
+<label class="block druk text-sm mb-2">WHAT'S YOUR BUDGET RANGE?</label>
+<div class="px-4">
+<input type="range" min="1000" max="10000" step="500" value="5000" class="w-full appearance-none bg-white/20 h-2 !rounded-full outline-none" id="budget-slider">
+<div class="flex justify-between mt-2">
+<span class="text-xs text-gray-400">$1,000</span>
+<span class="text-xs text-gray-400">$5,000</span>
+<span class="text-xs text-gray-400">$10,000+</span>
+</div>
+</div>
+</div>
+<div>
+<label class="block druk text-sm mb-2">WHEN DO YOU NEED THIS COMPLETED?</label>
+<div class="flex flex-wrap gap-3">
+<button class="px-4 py-2 border border-white/20 !rounded-button hover:border-primary transition-all text-sm whitespace-nowrap">ASAP</button>
+<button class="px-4 py-2 border border-white/20 !rounded-button hover:border-primary transition-all text-sm whitespace-nowrap">1-2 WEEKS</button>
+<button class="px-4 py-2 border border-white/20 !rounded-button hover:border-primary transition-all text-sm whitespace-nowrap">1 MONTH</button>
+<button class="px-4 py-2 border border-white/20 !rounded-button hover:border-primary transition-all text-sm whitespace-nowrap">2+ MONTHS</button>
+<button class="px-4 py-2 border border-white/20 !rounded-button hover:border-primary transition-all text-sm whitespace-nowrap">NOT SURE YET</button>
+</div>
+</div>
+<div class="pt-4">
+<button class="druk w-full px-8 py-4 bg-primary !rounded-button text-white text-sm tracking-wider hover:bg-primary/80 transition-all duration-300 whitespace-nowrap">
+GET MY PERSONALIZED QUOTE
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-[#0A0A1F]">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<div>
+<h2 class="futura text-5xl mb-4">Let's Build</h2>
+<h3 class="druk text-2xl mb-8 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Something Great</h3>
+<p class="text-gray-300 mb-8">Have a question or want to start your project? Reach out to me today and let's discuss how I can help transform your digital presence.</p>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full mr-4">
+<i class="ri-mail-line text-xl text-primary"></i>
+</div>
+<div>
+<h4 class="druk text-sm mb-1">EMAIL</h4>
+<p class="text-gray-300">hello@digitalcreative.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full mr-4">
+<i class="ri-phone-line text-xl text-primary"></i>
+</div>
+<div>
+<h4 class="druk text-sm mb-1">PHONE</h4>
+<p class="text-gray-300">+1 (555) 123-4567</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full mr-4">
+<i class="ri-map-pin-line text-xl text-primary"></i>
+</div>
+<div>
+<h4 class="druk text-sm mb-1">LOCATION</h4>
+<p class="text-gray-300">New York City, NY</p>
+</div>
+</div>
+</div>
+<div class="mt-10">
+<h4 class="druk text-sm mb-4">CONNECT WITH ME</h4>
+<div class="flex space-x-4">
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full hover:bg-primary/20 transition-all">
+<i class="ri-instagram-line text-xl text-primary"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full hover:bg-primary/20 transition-all">
+<i class="ri-twitter-x-line text-xl text-primary"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full hover:bg-primary/20 transition-all">
+<i class="ri-linkedin-line text-xl text-primary"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center bg-primary/10 !rounded-full hover:bg-primary/20 transition-all">
+<i class="ri-behance-line text-xl text-primary"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="glass p-8 !rounded-lg border border-white/10">
+<h3 class="druk text-xl mb-6">Send a Message</h3>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block druk text-xs mb-2">NAME</label>
+<input type="text" class="custom-input w-full px-4 py-3 !rounded-lg text-white bg-black/30 border-none focus:outline-none" placeholder="Your name">
+</div>
+<div>
+<label class="block druk text-xs mb-2">EMAIL</label>
+<input type="email" class="custom-input w-full px-4 py-3 !rounded-lg text-white bg-black/30 border-none focus:outline-none" placeholder="Your email">
+</div>
+</div>
+<div>
+<label class="block druk text-xs mb-2">SUBJECT</label>
+<input type="text" class="custom-input w-full px-4 py-3 !rounded-lg text-white bg-black/30 border-none focus:outline-none" placeholder="What's this about?">
+</div>
+<div>
+<label class="block druk text-xs mb-2">MESSAGE</label>
+<textarea class="custom-input w-full px-4 py-3 !rounded-lg text-white bg-black/30 border-none focus:outline-none h-32" placeholder="Tell me about your project..."></textarea>
+</div>
+<div class="flex items-center">
+<input type="checkbox" id="newsletter" class="custom-checkbox mr-3">
+<label for="newsletter" class="text-sm text-gray-300">Subscribe to my newsletter for digital tips and updates</label>
+</div>
+<button type="submit" class="druk w-full px-8 py-4 bg-primary !rounded-button text-white text-sm tracking-wider hover:bg-primary/80 transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+<span class="relative z-10">SEND MESSAGE</span>
+<span class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-12 bg-black">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="#" class="text-3xl font-['Pacifico'] text-white mb-4 block">logo</a>
+<p class="text-gray-400 mb-6">Transforming businesses with stunning digital solutions since 2020.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-primary transition-colors">
+<i class="ri-instagram-line text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary transition-colors">
+<i class="ri-twitter-x-line text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary transition-colors">
+<i class="ri-linkedin-line text-xl"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="druk text-sm mb-4">SERVICES</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Website Design</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Photography</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Video Production</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Branding</a></li>
+</ul>
+</div>
+<div>
+<h4 class="druk text-sm mb-4">COMPANY</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">About</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Portfolio</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Process</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="druk text-sm mb-4">NEWSLETTER</h4>
+<p class="text-gray-400 mb-4">Subscribe to get the latest updates and offers.</p>
+<div class="flex">
+<input type="email" placeholder="Your email" class="custom-input flex-1 px-4 py-3 !rounded-l-lg text-white bg-white/5 border-none focus:outline-none">
+<button class="druk px-4 py-3 bg-primary !rounded-r-lg text-white text-xs tracking-wider hover:bg-primary/80 transition-all duration-300 whitespace-nowrap">
+SUBSCRIBE
+</button>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Digital Creative. All rights reserved.</p>
+<div class="flex space-x-6">
+<a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</a>
+<a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Terms of Service</a>
+<a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+// Mock data
+const mockData = {
+services: [
+{ icon: 'ri-code-line', title: 'Website Design', description: 'Tailored, responsive websites that reflect your brand identity and engage your audience.', cta: 'BUILD YOUR WEBSITE' },
+{ icon: 'ri-camera-line', title: 'Photography', description: 'High-quality professional photography that captures your business essence.', cta: 'BOOK A PHOTOSHOOT' },
+{ icon: 'ri-movie-line', title: 'Video Production', description: 'Engaging promotional videos that tell your brand\'s story.', cta: 'GET STARTED ON YOUR VIDEO' },
+{ icon: 'ri-palette-line', title: 'Branding', description: 'A strong brand identity that connects with your audience.', cta: 'CREATE YOUR BRAND' }
+],
+stats: [
+{ value: '120+', label: 'PROJECTS COMPLETED' },
+{ value: '98%', label: 'CLIENT SATISFACTION' },
+{ value: '5', label: 'YEARS EXPERIENCE' },
+{ value: '24/7', label: 'SUPPORT' }
+],
+portfolio: [
+{ image: 'https://readdy.ai/api/search-image?query=modern minimalist website design for luxury brand, dark theme with blue accents, high contrast, professional UI design showcase on laptop screen, premium tech aesthetic&width=600&height=400&seq=2&orientation=landscape&removebg=false', title: 'Luxury Brand Website', category: 'Website Design' },
+{ image: 'https://readdy.ai/api/search-image?query=professional product photography of premium watch on dark background with blue lighting, high contrast commercial photography, luxury product showcase&width=600&height=400&seq=3&orientation=landscape&removebg=false', title: 'Luxury Watch Campaign', category: 'Photography' },
+{ image: 'https://readdy.ai/api/search-image?query=video production set with camera equipment filming business interview, dark studio with blue lighting, professional video shooting setup&width=600&height=400&seq=4&orientation=landscape&removebg=false', title: 'Corporate Promo Video', category: 'Video Production' },
+{ image: 'https://readdy.ai/api/search-image?query=branding mockup with logo design on business cards and stationery on dark background with blue accent lighting, premium brand identity showcase&width=600&height=400&seq=5&orientation=landscape&removebg=false', title: 'Elite Fitness Brand', category: 'Branding' },
+{ image: 'https://readdy.ai/api/search-image?query=responsive website design on multiple devices, dark UI with blue accents, e-commerce website showcase, premium tech aesthetic&width=600&height=400&seq=6&orientation=landscape&removebg=false', title: 'Fashion E-commerce', category: 'Website Design' },
+{ image: 'https://readdy.ai/api/search-image?query=professional food photography of gourmet dish on dark plate with dramatic lighting, high-end restaurant menu photography, luxury culinary art&width=600&height=400&seq=7&orientation=landscape&removebg=false', title: 'Gourmet Restaurant', category: 'Photography' }
+]
+};
+// Particles animation
+function createParticles() {
+const container = document.getElementById('particles-container');
+const particleCount = 50;
+for (let i = 0; i < particleCount; i++) {
+const particle = document.createElement('div');
+particle.classList.add('particle');
+const size = Math.random() * 3 + 1;
+particle.style.width = `${size}px`;
+particle.style.height = `${size}px`;
+const posX = Math.random() * 100;
+const posY = Math.random() * 100;
+particle.style.left = `${posX}%`;
+particle.style.top = `${posY}%`;
+const duration = Math.random() * 20 + 10;
+const delay = Math.random() * 5;
+particle.style.animation = `float ${duration}s ${delay}s infinite linear`;
+container.appendChild(particle);
+}
+}
+// Cursor trail effect
+function initCursorTrail() {
+const trailElements = 20;
+const trails = [];
+for (let i = 0; i < trailElements; i++) {
+const trail = document.createElement('div');
+trail.classList.add('cursor-trail');
+trail.style.width = `${10 - (i * 0.3)}px`;
+trail.style.height = `${10 - (i * 0.3)}px`;
+document.body.appendChild(trail);
+trails.push(trail);
+}
+let mouseX = 0;
+let mouseY = 0;
+document.addEventListener('mousemove', (e) => {
+mouseX = e.clientX;
+mouseY = e.clientY;
+trails[0].style.opacity = '0.8';
+trails[0].style.transform = `translate(${mouseX - 5}px, ${mouseY - 5}px) scale(1)`;
+});
+let index = 0;
+setInterval(() => {
+index++;
+for (let i = trailElements - 1; i > 0; i--) {
+trails[i].style.transform = trails[i-1].style.transform;
+trails[i].style.opacity = `${0.8 - (i * 0.04)}`;
+}
+}, 20);
+}
+// Initialize charts
+function initCharts() {
+// Website Performance Chart
+const websiteChart = echarts.init(document.getElementById('websiteChart'));
+const websiteOption = {
+animation: false,
+color: ['rgba(87, 181, 231, 1)'],
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+grid: {
+top: 10,
+right: 10,
+bottom: 30,
+left: 50
+},
+xAxis: {
+type: 'category',
+data: ['Before', 'Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
+axisLine: {
+lineStyle: {
+color: 'rgba(255, 255, 255, 0.2)'
+}
+},
+axisLabel: {
+color: 'rgba(255, 255, 255, 0.7)'
+}
+},
+yAxis: {
+type: 'value',
+name: 'Traffic',
+nameTextStyle: {
+color: 'rgba(255, 255, 255, 0.7)'
+},
+axisLine: {
+lineStyle: {
+color: 'rgba(255, 255, 255, 0.2)'
+}
+},
+axisLabel: {
+color: 'rgba(255, 255, 255, 0.7)'
+},
+splitLine: {
+lineStyle: {
+color: 'rgba(255, 255, 255, 0.1)'
+}
+}
+},
+series: [{
+data: [1200, 2500, 3500, 4800, 6000, 8200, 10000],
+type: 'line',
+smooth: true,
+lineStyle: {
+width: 4
+},
+symbol: 'none',
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{
+offset: 0,
+color: 'rgba(87, 181, 231, 0.3)'
+},
+{
+offset: 1,
+color: 'rgba(87, 181, 231, 0.1)'
+}
+])
+}
+}]
+};
+websiteChart.setOption(websiteOption);
+// Growth Chart
+const growthChart = echarts.init(document.getElementById('growthChart'));
+const growthOption = {
+animation: false,
+color: ['rgba(87, 181, 231, 1)', 'rgba(141, 211, 199, 1)', 'rgba(251, 191, 114, 1)', 'rgba(252, 141, 98, 1)'],
+tooltip: {
+trigger: 'item',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+legend: {
+orient: 'horizontal',
+bottom: 0,
+textStyle: {
+color: 'rgba(255, 255, 255, 0.7)'
+}
+},
+series: [
+{
+name: 'Client Growth',
+type: 'pie',
+radius: ['40%', '70%'],
+avoidLabelOverlap: false,
+itemStyle: {
+borderRadius: 10,
+borderColor: 'rgba(18, 18, 24, 1)',
+borderWidth: 2
+},
+label: {
+show: false
+},
+emphasis: {
+label: {
+show: true,
+formatter: '{b}: {c} ({d}%)',
+color: '#ffffff'
+}
+},
+labelLine: {
+show: false
+},
+data: [
+{ value: 35, name: 'E-commerce' },
+{ value: 25, name: 'Professional Services' },
+{ value: 20, name: 'Food & Beverage' },
+{ value: 20, name: 'Health & Wellness' }
+]
+}
+]
+};
+growthChart.setOption(growthOption);
+// Responsive charts
+window.addEventListener('resize', function() {
+websiteChart.resize();
+growthChart.resize();
+});
+}
+// Radio button selection for project type
+function initProjectTypeSelection() {
+const radioButtons = document.querySelectorAll('input[name="project-type"]');
+radioButtons.forEach(radio => {
+radio.addEventListener('change', function() {
+// Reset all labels
+document.querySelectorAll('input[name="project-type"] + label').forEach(label => {
+label.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+label.style.backgroundColor = 'transparent';
+});
+// Style selected label
+if (this.checked) {
+this.nextElementSibling.style.borderColor = '#2E5BFF';
+this.nextElementSibling.style.backgroundColor = 'rgba(46, 91, 255, 0.1)';
+}
+});
+});
+}
+// Budget slider
+function initBudgetSlider() {
+const slider = document.getElementById('budget-slider');
+slider.addEventListener('input', function() {
+// Update display or perform actions based on slider value
+const value = this.value;
+// You can add code to display the current value if needed
+});
+}
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+createParticles();
+initCursorTrail();
+initCharts();
+initProjectTypeSelection();
+initBudgetSlider();
+
+// Add scroll animation for elements
+const observerOptions = {
+root: null,
+rootMargin: '0px',
+threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('animate-fade-in');
+observer.unobserve(entry.target);
+}
+});
+}, observerOptions);
+
+document.querySelectorAll('.glass, .portfolio-item, .text-center').forEach(el => {
+el.style.opacity = '0';
+el.style.transform = 'translateY(20px)';
+el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+observer.observe(el);
+});
+
+// Add animation class
+document.head.insertAdjacentHTML('beforeend', `
+<style>
+.animate-fade-in {
+opacity: 1 !important;
+transform: translateY(0) !important;
+}
+</style>
+`);
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+</body>
+</html>
